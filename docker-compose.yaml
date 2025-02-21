@@ -1,0 +1,53 @@
+networks:
+  app_network:
+    driver: bridge
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - app_network
+
+  pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile.pipeline
+    container_name: pipeline
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    command: ["python", "pipeline/pipeline.py"]
+    networks:
+      - app_network
+
+  flaskapp:
+    build:
+      context: .
+      dockerfile: Dockerfile.flaskapp
+    container_name: flaskapp
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    command: ["flask", "--app", "api.app", "run", "--debug", "--host=0.0.0.0"]
+    networks:
+      - app_network
+
+volumes:
+  mongodb_data:

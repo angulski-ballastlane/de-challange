@@ -1,0 +1,19 @@
+data:
+  base_path: ./data
+  raw:
+    dupixent:
+      file: dupixent.json
+      format: json
+  domain:
+    treated_data:
+      file: processed.json
+      format: json
+  processed:
+    enhanced_data:
+      file: enriched_file.json
+      format: json
+      config:
+        detail_columns:
+          - add_renewal_details
+          - program_details
+          - eligibility_details

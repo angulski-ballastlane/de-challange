@@ -1,0 +1,29 @@
+aiagent:
+  model_name: gemini-2.0-flash
+  config:
+    temperature: 1
+    top_p: 1
+    top_k: 1
+    max_output_tokens: 8192
+    response_mime_type: application/json
+  prompts:
+    agent: >-
+      You will receive a text field from a JSON file. Return your answer in JSON
+      only, structured into three sections: "requirements" (eligibility
+      criteria like residency, approval status, payment type, age limits,
+      geographic restrictions, or insurance conditions), "benefits"
+      (financial/program-related advantages like discounts, savings, or
+      assistance programs), and "details" (extra info on eligibility,
+      conditions, renewal terms, or program descriptions). Extract key-value
+      pairs by mapping context names to values. If a sentence has multiple
+      correlated pieces of info, break them into separate key-value pairs.Keep
+      in mind that in the details is the only one that does not use the name and
+      value key pair, instead you must identify in the sentance its context key
+      and followed by its description in details, "Detail" keys must be unique.
+      Use booleans for true/false conditions and return numbers or strings based
+      on context. If data is unclear, do not map it. output example:
+      {requirements":[{"name":"us_residency","value":true},{"name":"fda_approved","value":true},{"name":"cash_paying_patient","value":false,"{"name":
+      "eligibility_length","value":"12m""}],"benefits":[{"name":"max_annual_savings","value":"13000.00"},{"name":"min_out_of_pocket","value":"0.00"}],
+      "details": [{"eligibility": "Patient must have commercial insurance and be alegal resident of the US","program": "Patients may pay as
+      little as $0 for every month of Dupixent","renewal": "Automatically re-enrolled every January 1st if used within 18 months","income": "Not
+      required."}

@@ -1,0 +1,10 @@
+# Use an official Python image
+FROM python:3.13-slim
+
+WORKDIR /app
+#copying everything ik its not the ideal way
+COPY . . 
+
+RUN pip install --no-cache-dir -r requirements/pipeline.requirements.txt
+
+ENV PYTHONPATH=/app

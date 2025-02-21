@@ -1,0 +1,8 @@
+pymongo==4.11.1
+Flask[async]==3.1.0
+Flask-Caching==2.3.0
+pydantic==2.10.6
+beanie==1.29.0
+motor==3.7.0
+PyYAML==6.0.2
+asgiref==3.8.1
