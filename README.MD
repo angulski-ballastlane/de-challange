@@ -43,6 +43,14 @@ simple RESTful API.
 
 ## Installation
 
+#### 1
+
+First you must get a `GEMINI` API key, so the pipeline does not run with errors.
+Go to `https://aistudio.google.com/apikey` and create your API key for the project.
+Add the Key to `.env` file just like the `.env.example` shows.
+
+#### 2
+
 Ensure that you have `Docker` and `Docker Compose` installed on your machine.  
 Once installed, you can build and start the containers by running:
 
@@ -78,7 +86,6 @@ Once the API is confirmed to be running, you can fetch program details using:
 ```bash
 curl -X GET "http://127.0.0.1:5000/programs/11757"
 ```
-
 
 ## Structure
 
