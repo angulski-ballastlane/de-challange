@@ -16,4 +16,4 @@ app.register_blueprint(health_bp)
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.run_until_complete(init_db())
-    cache.run(debug=True, host="0.0.0.0", use_reloader=False)
+    app.run(debug=True, host="0.0.0.0", use_reloader=False)
