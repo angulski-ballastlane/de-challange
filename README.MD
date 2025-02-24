@@ -65,7 +65,7 @@ This will automatically execute the script located at `/pipeline/pipeline.py`, w
 - Ingest the processed data into the database.
 
 If the pipeline runs successfully, the Flask application will be accessible at:
-`http://127.0.0.1:5000`
+`http://127.0.0.1:4001`
 
 ## Testing
 
@@ -76,7 +76,7 @@ If the build completes without errors, you can retrieve data from the API.
 Verify that the API is running by checking its health status:
 
 ```bash
-curl -X GET "http://127.0.0.1:5000/health"
+curl -X GET "http://127.0.0.1:4001/health"
 ```
 
 #### 2. Retrieve Program Data
